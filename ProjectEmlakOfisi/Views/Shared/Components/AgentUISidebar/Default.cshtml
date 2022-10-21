@@ -1,0 +1,52 @@
+﻿@using EntityLayer.Concrete
+@model User
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    @if (@Model.Image != null)
+                    {
+                        <img src="~/Users/Images/@Model.Image" alt="image">
+                    }
+                    else
+                    {
+                        <img src="~/Users/Images/Default.png" alt="image">
+                    }
+                    <span class="login-status online"></span>
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                    <span class="font-weight-bold mb-2">@Model.CompanyName</span>
+                    <span class="text-secondary text-small">@Model.Name @Model.Surname</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/AgentUI">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Advert/AdvertListByUser">
+                <span class="menu-title">İlanlarım</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/User/Index">
+                <span class="menu-title">Profilim</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item sidebar-actions">
+            <span class="nav-link">
+                <a href="/Advert/AdvertAdd" class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Yeni İlan</a>
+            </span>
+        </li>
+    </ul>
+
+</nav>

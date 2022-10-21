@@ -1,0 +1,137 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/themes/AgentTheme/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/themes/AgentTheme/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/themes/AgentTheme/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/themes/AgentTheme/assets/images/favicon.ico" />
+    <style>
+        .search-field a.nav-link {
+            height: auto !important;
+            line-height: 1;
+            border-top: 0;
+            padding: 1.25rem 0;
+        }
+
+        .search-field .nav-profile-image {
+            width: 45px;
+            height: 45px;
+        }
+
+            .search-field .nav-profile-image img {
+                width: 44px;
+                height: 44px;
+                border-radius: 100%;
+            }
+
+        .search-field .nav-profile-text {
+            margin-left: 1rem;
+        }
+
+        .search-field label.filter-label {
+            width: 100%;
+        }
+
+        .search-field .input-group .form-check {
+            margin: 0;
+            margin-right: 9px;
+        }
+
+        .search-field .input-group {
+            width: max-content;
+            margin-left: 20px;
+        }
+
+        .search-field .form-group {
+            margin: 0 10px 0 0;
+        }
+
+        .search-field select {
+            height: auto;
+        }
+
+        .search-field label.filter-label {
+            width: 100%;
+            line-height: normal;
+            vertical-align: bottom;
+            margin: 0;
+            font-size: 15px;
+            font-weight: bolder;
+            color: #ab63ff;
+            margin-bottom: 10px;
+        }
+
+        .search-field button.btn.btn-gradient-primary {
+            margin-top: 8px;
+            margin-left: 50px;
+        }
+
+        .dropdown .dropdown-menu .dropdown-item:hover {
+            color: #b66dff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="/AgentUI/Index"><img src="~/Images/AgentLogo.png" /></a>
+                <a class="navbar-brand brand-logo-mini" href="/AgentUI/Index"><img src="~/themes/AgentTheme/assets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                @await Component.InvokeAsync("AgentUIHeader")
+
+
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+
+            @await Component.InvokeAsync("AgentUISidebar")
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                @await Html.PartialAsync("~/Views/AgentUI/AgentFooterPartial.cshtml")
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/themes/AgentTheme/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/off-canvas.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/hoverable-collapse.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/sweetalert.min.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/misc.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/dashboard.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/todolist.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/file-upload.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
+
+
+
+

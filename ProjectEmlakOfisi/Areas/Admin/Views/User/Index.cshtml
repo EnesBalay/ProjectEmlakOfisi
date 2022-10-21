@@ -1,0 +1,106 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 grid-margin">
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bütün Kullanıcılar</h4>
+                <p class="card-description">
+                    Bu sayfada Emlakçı ve Yönetici olan kullanıcılar gözükmektedir.
+                </p>
+                <p class="text-danger">@ViewBag.DontDeleteUser</p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Firma Logosu</th>
+                                <th>Firma Adı</th>
+                                <th>Sahip Ad Soyad</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Email</th>
+                                <th>Hesap Türü</th>
+                                <th>Durumu</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.UserID</td>
+                                    @if (@item.Image!=null)
+                                    {
+                                        <td>
+                                            <img src="~/Users/Images/@item.Image" alt="image">
+                                        </td>
+                                    }
+                                    @if(@item.Image==null){
+                                             <td>
+                                            <img src="~/Users/Images/Default.png" alt="image">
+                                        </td>
+                                    }
+                                    <td>@item.CompanyName</td>
+                                    <td>@item.Name @item.Surname</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Email</td>
+                                    
+                                    @if (@item.AccountType=="Admin")
+                                    {
+                                        <td>Yönetici</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Emlakçı</td>
+                                    }
+                                    @if (@item.UserStatus==true)
+                                    {
+                                        <td>Aktif</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Pasif</td>
+                                    }
+                                    <td><a class="btn btn-warning" href="/Admin/User/UserEdit/@item.UserID">Düzenle</a></td>
+                                    <td><a class="btn btn-danger" onclick="AreYouSureDeleteUser(this)">Sil</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <a href="/Admin/User/UserAdd" class="btn btn-warning mt-4">+ Yeni Emlakçı Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dontdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+ 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-danger">
+            Kendi hesabınızı silemezsiniz.
+        </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,26 @@
+﻿[
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/_sidebar.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/_sidebar.scss"
+  },
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/style.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/style.scss"
+  },
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/_dashboard.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/_dashboard.scss"
+  },
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/components/_badges.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/components/_badges.scss"
+  },
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/landing-screens/_auth.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/landing-screens/_auth.scss"
+  },
+  {
+    "outputFile": "wwwroot/themes/AgentTheme/assets/scss/mixins/_animation.css",
+    "inputFile": "wwwroot/themes/AgentTheme/assets/scss/mixins/_animation.scss"
+  }
+]

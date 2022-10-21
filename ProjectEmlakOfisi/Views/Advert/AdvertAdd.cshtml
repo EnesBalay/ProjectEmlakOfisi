@@ -1,0 +1,181 @@
+﻿@model ProjectEmlakOfisiUI.Models.AddAdvertImage
+
+@{
+    ViewData["Title"] = "AdvertAdd";
+    Layout = "~/Views/Shared/AgentLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Yeni İlan Oluştur</h4>
+        <p class="card-description"> Bu sayfadan yeni ilan ekleyebilirsiniz. </p>
+        @using (Html.BeginForm("AdvertAdd", "Advert", FormMethod.Post, new { @class = "forms-sample", @enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                @Html.Label("Yayın Durumu")
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="AdvertStatus" id="AdvertStatus0" value="false"> Pasif <i class="input-helper"></i>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="AdvertStatus" id="AdvertStatus1" value="true" checked=""> Aktif <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("İlan Adı")
+                @Html.TextBoxFor(x=>x.AdvertName, new { @class="form-control", @required = "required" })
+                @Html.ValidationMessageFor(x=>x.AdvertName,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Açıklama")
+                @Html.TextAreaFor(x=>x.AdvertDescription, 15,3, new { @class="form-control", @required = "required" })
+                @Html.ValidationMessageFor(x=>x.AdvertDescription,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                <label>Görsel-1</label>
+                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                    <img class="img-fluid" />
+                </div>
+                <input type="file" name="AdvertImage1" class="file-upload-default" required>
+                <div class="input-group col-xs-12">
+                    <input type="text" name="AdvertImage1Name" class="form-control file-upload-info" readonly="readonly">
+                    <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Yükle</button>
+                    </span>
+                </div>
+                @Html.ValidationMessageFor(x=>x.AdvertImage1,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                <label>Görsel-2</label>
+                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                    <img class="img-fluid" />
+                </div>
+                <input type="file" name="AdvertImage2" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                    <input type="text" name="AdvertImage2Name" class="form-control file-upload-info" readonly="readonly">
+                    <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Yükle</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Görsel-3</label>
+                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                    <img class="img-fluid" />
+                </div>
+                <input type="file" name="AdvertImage3" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                    <input type="text" name="AdvertImage3Name" class="form-control file-upload-info" readonly="readonly">
+                    <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Yükle</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Görsel-4</label>
+                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                    <img class="img-fluid" />
+                </div>
+                <input type="file" name="AdvertImage4" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                    <input type="text" name="AdvertImage4Name" class="form-control file-upload-info" readonly="readonly">
+                    <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Yükle</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Görsel-5</label>
+                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                    <img class="img-fluid" />
+                </div>
+                <input type="file" name="AdvertImage5" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                    <input type="text" name="AdvertImage5Name" class="form-control file-upload-info" readonly="readonly">
+                    <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Yükle</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Satış Türü")
+                @Html.DropDownListFor(x=>x.AdvertSaleType,(List<SelectListItem>)ViewBag.st, new { @class="form-control",@required = "required" })
+                @Html.ValidationMessageFor(x=>x.AdvertSaleType,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Kategori")
+                @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv, new{ @class="form-control", @onChange="changeCategory()",@required = "required"})
+                @Html.ValidationMessageFor(x=>x.CategoryID,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Konut Yaşı")
+                <input class="form-control" id="HousingAge" type="number" name="HousingAge" required>
+                @Html.ValidationMessageFor(x=>x.HousingAge,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Salon Miktarı")
+                <input class="form-control" id="HousingHallQuantity" type="number" name="HousingHallQuantity" required>
+                @Html.ValidationMessageFor(x=>x.HousingHallQuantity,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Oda Miktarı")
+                <input class="form-control" id="HousingRoomQuantity" type="number" name="HousingRoomQuantity" required>
+                @Html.ValidationMessageFor(x=>x.HousingRoomQuantity,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Konut Net m²(metrekaresi)")
+                <input class="form-control" id="HousingSquareMeters" type="number" name="HousingSquareMeters" required>
+                @Html.ValidationMessageFor(x=>x.HousingSquareMeters,"",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                @Html.Label("Fiyat")
+                <div class="input-group col-sm-3" style="padding:0;">
+                    <input class="form-control" name="AdvertPrice" value="@ViewBag.AddPrice" data-type="currency" required />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-gradient-primary text-white">₺</span>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(x=>x.AdvertPrice,"",new{@class="text-danger"})
+            </div>
+            <button class="btn btn-gradient-primary mr-2">İlanı Ekle</button>
+        }
+    </div>
+</div>
+@*@if (Model.AdvertStatus == true || Model.AdvertStatus == false)
+    {
+    <script>
+    var status="@Model.AdvertStatus";
+    var statusFalse = document.getElementById("AdvertStatus0");
+    var statusTrue = document.getElementById("AdvertStatus1");
+    if(status=="True"){
+    statusTrue.setAttribute("checked","checked");
+    }else{
+    statusFalse.setAttribute("checked","checked");
+    }
+    </script>
+    }*@
+<script>
+    function changeCategory(){
+        var select = document.getElementById('CategoryID');
+        var value = select.options[select.selectedIndex].value;
+        var housingAge=document.getElementById("HousingAge");
+        var housingHallQuantity=document.getElementById("HousingHallQuantity");
+        var housingRoomQuantity=document.getElementById("HousingRoomQuantity");
+        var housingSquareMeters=document.getElementById("HousingSquareMeters");
+        if(value==2){
+            housingAge.required = false;
+            housingHallQuantity.required=false;
+            housingRoomQuantity.required=false;
+        }else{
+            housingAge.required = true;
+            housingHallQuantity.required=true;
+            housingRoomQuantity.required=true;
+        }
+    }
+
+</script>
+

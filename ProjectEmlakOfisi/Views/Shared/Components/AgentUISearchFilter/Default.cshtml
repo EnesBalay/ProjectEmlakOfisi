@@ -1,0 +1,54 @@
+﻿<div class="search-field d-none d-md-block">
+    <form class="d-flex align-items-center h-100" action="/Advert/AdvertListByUser">
+        <div class="input-group" style="margin-left:0px;">
+            <div class="input-group-prepend bg-transparent">
+                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+            </div>
+            <input type="text" name="Search" class="form-control" placeholder="İlan Adı" value="@ViewBag.Search">
+        </div>
+        <div class="input-group">
+            <label class="filter-label">Yayın Durumu</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" id="AdvertStatusAll" name="AdvertStatus" value="All" checked=""> Tümü <i class="input-helper"></i>
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" id="AdvertStatus1" name="AdvertStatus" value="True"> Aktif <i class="input-helper"></i>
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" id="AdvertStatus0" name="AdvertStatus" value="False"> Pasif <i class="input-helper"></i>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="filter-label">Satış Türü</label>
+
+            @Html.DropDownList("SaleType", new SelectList(ViewBag.st,"Value","Text"),new{@class="form-control"})
+        </div>
+        <div class="form-group">
+            <label class="filter-label">Kategori</label>
+
+            @Html.DropDownList("AdvertCategory", new SelectList(ViewBag.cv,"Value","Text"),new{@class="form-control"})
+
+        </div>
+        <button type="submit" class="btn btn-gradient-primary">Filtrele</button>
+    </form>
+</div>
+
+<script>
+    var status="@ViewBag.aStatus";
+    var statusFalse = document.getElementById("AdvertStatus0");
+    var statusTrue = document.getElementById("AdvertStatus1");
+    var statusAll= document.getElementById("AdvertStatusAll");
+    if(status=="True"){
+        statusTrue.setAttribute("checked","checked");
+    }else if(status=="False"){
+        statusFalse.setAttribute("checked","checked");
+    }else if(status=="null" || status=="All"){
+        statusAll.setAttribute("checked","checked");
+    }
+</script>

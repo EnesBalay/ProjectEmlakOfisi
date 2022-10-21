@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Concrete.User
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AgentLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Emlakçı Bilgileri</h4>
+        <p class="card-description">Bilgilerinizi güncellemek için <strong><a href="mailto:destek@emlakofisi.com">destek@emlakofisi.com</a></strong> mail adresi üzerinden talep oluşturabilirsiniz.</p>
+         <a style="margin-bottom:10px;" href="/User/EditUserProfile/@Model.UserID" class="btn btn-gradient-primary mr-2">Şifreni Değiştir</a>
+        <div class="form-group">
+            @Html.Label("Emlakçı Adı")
+            @Html.TextBoxFor(x=>x.CompanyName, new { @class="form-control",@placeholder="Firma Adı", @readonly = "readonly"})
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                @Html.Label("Firma Logosu")
+            </div>
+            <div class="col-sm-2">
+                @if (@Model.Image != null)
+                {
+                        <img class="img-fluid" src="~/Users/Images/@Model.Image" alt="image">
+                }
+                else
+                {
+                        <img class="img-fluid" src="~/Users/Images/Default.png" alt="image">
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Kullanıcı Adı")
+            @Html.TextBoxFor(x=>x.UserName, new { @class="form-control",@placeholder="Kullanıcı Adı", @readonly = "readonly"})
+        </div> 
+        <div class="form-group">
+            @Html.Label("Emlakçı Sahibi")
+            <input class="form-control" id="NameSurname" name="NameSurname" placeholder="Kullanıcı Adı" readonly="readonly" type="text" value="@Model.Name @Model.Surname">
+        </div>
+        <div class="form-group">
+            @Html.Label("Mail Adresi")
+            @Html.TextBoxFor(x=>x.Email, new { @class="form-control",@placeholder="Mail Adresi", @readonly = "readonly"})
+        </div>
+
+    </div>
+</div>

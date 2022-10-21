@@ -1,0 +1,136 @@
+﻿@model ProjectEmlakOfisiUI.Models.AddProfileImage
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Kullanıcı Ekleme</h4>
+                <form action="/Admin/User/UserEdit" method="post" class="form-sample" enctype="multipart/form-data">
+                    <p class="card-description">Bu sayfadan yeni kullanıcı ekleyebilirsiniz.</p>
+                    @Html.HiddenFor(x=>x.UserID)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Firma Adı</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x=>x.CompanyName,new{@class="form-control"})
+                                    @Html.ValidationMessageFor(x=>x.CompanyName,"",new{@class="text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Kullanıcı Adı</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x=>x.UserName,new{@class="form-control"})
+                                    @Html.ValidationMessageFor(x=>x.UserName,"",new{@class="text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Mail Adresi</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x=>x.Email,new{@class="form-control"})
+                                    @Html.ValidationMessageFor(x=>x.Email,"",new{@class="text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Hesap Türü</label>
+                                <div class="col-sm-4">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="AccountType" id="accountType1" value="User">
+                                            Emlakçı
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="AccountType" id="accountType2" value="Admin">
+                                            Yönetici
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="form-label col">Aktiflik</label>
+                                <input type="checkbox" name="UserStatus" id="userStatus0" class="form-check-input col-sm-8" value="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Firma Logo</label>
+                                <div class="col-sm-3" style="padding-left:0; margin-bottom:10px;">
+                                    <img class="img-fluid" src="/Users/Images/@Model.ImageName" />
+                                </div>
+                                <input type="file" name="Image" class="file-upload-default" value="/Users/Images/@Model.ImageName">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="ImageName" class="form-control file-upload-info" readonly="readonly" value="@Model.ImageName">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Resim Yükle</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Firma Sahibi Bilgileri
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Ad</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x=>x.Name,new{@class="form-control"})
+                                    @Html.ValidationMessageFor(x=>x.Name,"",new{@class="text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Soyad</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x=>x.Surname,new{@class="form-control"})
+                                    @Html.ValidationMessageFor(x=>x.Surname,"",new{@class="text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                    <a href="/Admin/User/Index" class="btn btn-light">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var accountType="@Model.AccountType";
+    var userAccount = document.getElementById("accountType1");
+    var adminAccount = document.getElementById("accountType2");
+    if(accountType=="Admin"){
+        adminAccount.setAttribute("checked","checked");
+    }else{
+        userAccount.setAttribute("checked","checked");
+    }
+
+    var userStatus="@Model.UserStatus";
+    if(userStatus=="True"){
+        document.getElementById("userStatus0").setAttribute("checked","checked");
+    }
+</script>

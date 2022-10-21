@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.User
+
+@{
+    ViewData["Title"] = "EditUserProfile";
+    Layout = "~/Views/Shared/AgentLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Profil Düzenleme</h4>
+        <p class="card-description"> Buradan profil bilgilerinizi güncelleyebilirsiniz.</p>
+        @using (Html.BeginForm("EditUserProfile", "User", FormMethod.Post, new { @class = "forms-sample" }))
+        {
+            @Html.HiddenFor(x=>x.UserID)
+            @Html.HiddenFor(x=>x.UserName)
+            @Html.HiddenFor(x=>x.CompanyName)
+            @Html.HiddenFor(x=>x.Name)
+            @Html.HiddenFor(x=>x.Surname)
+            @Html.HiddenFor(x=>x.Email)
+            @Html.HiddenFor(x=>x.Image)
+            @Html.HiddenFor(x=>x.UserStatus)
+            @Html.HiddenFor(x=>x.AccountType)
+            <div class="form-group">
+                @Html.Label("Şifre")
+                @Html.PasswordFor(x=>x.Password, new { @class="form-control",@placeholder="Yeni Şifre" })
+                @Html.ValidationMessageFor(x=>x.Password)
+            </div>
+            <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
+        }
+    </div>
+</div>
+@* *@

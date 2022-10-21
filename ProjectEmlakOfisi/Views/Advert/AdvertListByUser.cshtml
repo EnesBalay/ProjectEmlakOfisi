@@ -1,0 +1,67 @@
+﻿@using EntityLayer.Concrete
+@model List<Advert>
+
+@{
+    ViewData["Title"] = "AdvertListByUser";
+    Layout = "~/Views/Shared/AgentLayout.cshtml";
+}
+<div class="card grid-margin">
+    <div class="card-body">
+        <h4 class="card-title">İlan Filtreleme</h4>
+        <p class="card-description">
+            İlanlarınız bu bölümde filtreleyebilirsiniz.
+        </p>
+        @await Component.InvokeAsync("AgentUISearchFilter")
+    </div>
+</div>
+<div class="card grid-margin">
+    <div class="card-body">
+        <h4 class="card-title">İlanlar</h4>
+        <p class="card-description">
+            İlanlarınız bu bölümde listelenmektedir.
+        </p>
+        <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>İlan Başlığı</th>
+                    <th>Düzenleme Tarihi</th>
+                    <th>Kategori</th>
+                    <th>Satış Türü</th>
+                    <th>Durum</th>
+                    <th>Fiyat</th>
+                    <th>Sil</th>
+                    <th>Düzenle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.AdvertID</td>
+                        <td>@item.AdvertName</td>
+                        <td>@(((DateTime)item.AdvertCreateDate).ToString("dd MMMM yyyy"))</td>
+                        <td>@item.Category.CategoryName</td>
+                        <td>@item.AdvertSaleType</td>
+                        @if (@item.AdvertStatus == true)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>@item.AdvertPrice.ToString("#,##0.00") ₺</td>
+                        <td><button onclick="AreYouSureDeleteAdvert(this)" class="btn btn-danger"><i class="mdi mdi-delete"></i> Sil</button></td>
+                        <td><a href="/Advert/UpdateAdvert/@item.AdvertID" class="btn btn-warning"><i class="mdi mdi-file-check btn-icon-append"></i> Düzenle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+        <br />
+        <a href="~/Advert/AdvertAdd" class="btn btn-gradient-primary">+ Yeni İlan Oluştur</a>
+    </div>
+</div>
+

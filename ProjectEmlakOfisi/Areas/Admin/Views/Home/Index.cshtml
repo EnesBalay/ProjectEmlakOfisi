@@ -1,0 +1,22 @@
+﻿@using EntityLayer.Concrete
+@model User
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Emlakçı Paneline Hoş Geldin</h2>
+<br />
+@if (@Model.Name != null && @Model.Surname != null)
+{
+    <h3>Sayın @Model.Name @Model.Surname</h3>
+}
+else
+{
+    <h3>@Model.CompanyName</h3>
+}
+<ul>
+    <li>
+        Panelin sol tarafındaki menüden Kullanıcılar sayfasına giderek kullanıcı ekliyebilir, görüntüleyebilir, düzenleyebilir ve silebilirsin.
+    </li>
+</ul>

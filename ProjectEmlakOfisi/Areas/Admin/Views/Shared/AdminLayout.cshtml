@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <link rel="stylesheet" href="~/themes/AdminTheme/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/themes/AdminTheme/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/themes/AdminTheme/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/themes/AdminTheme/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/themes/AdminTheme/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/themes/AdminTheme/js/select.dataTables.min.css">
+    <link rel="stylesheet" href="~/themes/AdminTheme/css/vertical-layout-light/style.css">
+    <link rel="shortcut icon" href="~/themes/AdminTheme/images/favicon.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="/"><img src="~/Images/AdminLogo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="/"><img src="~/themes/AdminTheme/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            @await Component.InvokeAsync("AdminNavbar")
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Home">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/User/Index">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">Kullanıcılar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="background: transparent;">
+                        <a href="/Admin/User/UserAdd" class=" nav-link btn btn-block btn-warning mt-4" style="background: #FFC100;">
+                            <i class="menu-icon">+ </i>
+                            <span class="menu-title">Yeni Emlakçı Ekle</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                @await Html.PartialAsync("~/Areas/Admin/Views/Home/AdminFooterPartial.cshtml")
+            </div>
+        </div>
+    </div>
+    <script src="~/themes/AdminTheme/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/themes/AdminTheme/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/themes/AdminTheme/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/themes/AdminTheme/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="~/themes/AdminTheme/js/dataTables.select.min.js"></script>
+    <script src="~/themes/AdminTheme/js/off-canvas.js"></script>
+    <script src="~/themes/AdminTheme/js/hoverable-collapse.js"></script>
+    <script src="~/themes/AdminTheme/js/template.js"></script>
+    <script src="~/themes/AdminTheme/js/settings.js"></script>
+    <script src="~/themes/AdminTheme/js/todolist.js"></script>
+    <script src="~/themes/AdminTheme/js/dashboard.js"></script>
+    <script src="~/themes/AgentTheme/assets/js/sweetalert.min.js"></script>
+    <script src="~/themes/AdminTheme/js/Chart.roundedBarCharts.js"></script>
+    <script src="~/themes/AdminTheme/js/file-upload.js"></script>
+    <script src="~/themes/AdminTheme/js/select2.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        var q = document.URL.split('#')[1];
+        if(q=="dontdelete"){
+            $('#dontdelete').modal('show')
+        }
+    </script>
+</body>
+
+</html>
+

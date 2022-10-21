@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model User
+<h2>Emlakçı Paneline Hoş Geldin</h2>
+<br />
+@if (@Model.Name != null && @Model.Surname != null)
+{
+    <h3>Sayın @Model.Name @Model.Surname</h3>
+}
+else
+{
+    <h3>@Model.CompanyName</h3>
+}
+<ul>
+    <li>
+        Panelin sol tarafındaki menüden İlanlarım sayfasına giderek ilan ekliyebilir, görüntüleyebilir, düzenleyebilir ve silebilirsin.
+    </li>
+    <li>
+        Profilim sayfasına giderek güncel kullanıcı bilgilerini görüntüleyebilir ve şifreni güncelleyebilirsin.
+    </li>
+</ul>
