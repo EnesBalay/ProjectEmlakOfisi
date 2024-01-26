@@ -18,9 +18,12 @@ namespace BussinessLayer.Concrete
             _userDal = userDal;
         }
 
-        public void Add(User t)
+        public void Add(User user)
         {
-            _userDal.Add(t);
+            if (user.CompanyName.Count() < 10)
+            {
+                _userDal.Add(user);
+            }
         }
 
         public User GetById(int id)
@@ -49,7 +52,7 @@ namespace BussinessLayer.Concrete
         }
         public List<User> GetUserBySearch(string search)
         {
-           return _userDal.GetUsersBySearch(search);
+            return _userDal.GetUsersBySearch(search);
         }
     }
 }

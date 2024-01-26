@@ -149,7 +149,7 @@ namespace ProjectEmlakOfisiUI.Controllers
         public IActionResult UpdateAdvert(AddAdvertImage advertImage)
         {
             var signedUserID = userManager.GetUserByIdentityName(User.Identity.Name).UserID;
-            ViewBag.AddPrice(advertImage.AdvertPrice);
+            ViewBag.AddPrice = advertImage.AdvertPrice;
             Advert advert = AdvertImageSync(advertImage);
             advert.UserID = signedUserID;
             advert.AdvertCreateDate = DateTime.Now;

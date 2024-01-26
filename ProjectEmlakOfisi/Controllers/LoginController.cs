@@ -21,9 +21,12 @@ namespace ProjectEmlakOfisiUI.Controllers
         public IActionResult Index()
         {
             var userValues = userManager.GetUserByIdentityName(User.Identity.Name);
+
             if (userValues == null)
             {
-                return View();
+                User user = new User();
+                user.Email = "1alilacin@gmail.com";
+                return View(user);
 
             }
             else if (userValues.AccountType == "Admin")
@@ -36,7 +39,7 @@ namespace ProjectEmlakOfisiUI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(User p)
+        public async Task<IActionResult> Index(User p, string CustomData)
         {
             Context c = new Context();
             var datavalue = c.Users.FirstOrDefault(x => x.UserName == p.UserName && x.Password == p.Password && x.AccountType == p.AccountType);
@@ -65,6 +68,7 @@ namespace ProjectEmlakOfisiUI.Controllers
                     ViewBag.LoginErrorAdmin = "Kullanıcı adı ya da şifre hatalı!";
                     ViewBag.AccountType = "Admin";
                     ViewBag.UsernameAdmin = p.UserName;
+                    ViewBag.CustomData = CustomData;
                     return View();
                 }
                 else
@@ -72,6 +76,7 @@ namespace ProjectEmlakOfisiUI.Controllers
                     ViewBag.LoginErrorUser = "Kullanıcı adı ya da şifre hatalı!";
                     ViewBag.AccountType = "User";
                     ViewBag.UsernameUser = p.UserName;
+                    ViewBag.CustomData = CustomData;
                     return View();
                 }
             }
@@ -81,6 +86,7 @@ namespace ProjectEmlakOfisiUI.Controllers
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             return RedirectToAction("Index", "Login");
         }
 

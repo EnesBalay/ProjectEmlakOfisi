@@ -13,12 +13,10 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseMySql("server=localhost;port=3306;database=emlakofisidb;user=******;password=******",new MySqlServerVersion(new Version(8, 0, 31)));
+            optionBuilder.UseMySql("server=localhost;port=3306;database=emlakofisidb;user=root;password=beeNEO!34680",new MySqlServerVersion(new Version(8, 0, 31)));
         }
-        public DbSet<About> Abouts { get; set; }
         public DbSet<Advert> Adverts { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }
